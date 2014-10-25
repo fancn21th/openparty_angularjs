@@ -1,0 +1,28 @@
+﻿<h1 class="page-header">#Demo 002</h1>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4">
+                    <div class="progress progress-striped active" data-ng-hide="isReady">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr data-ng-repeat="car in cars">
+                <td><img data-ng-src="{{car.imgUrl}}" class="img-thumbnail fyj-img-size" /></td>
+                <td>{{car.modelName}}</td>
+                <td>{{car.color | uppercase }}</td>
+                <td>{{car.price | currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

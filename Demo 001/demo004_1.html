@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="demoApp">
+<head>
+    <title>Demo 004 - 1</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <style>
+         .fyj-span {
+            margin-bottom : 20px;
+        }
+        .fyj-img-size {
+            width:150px;
+        }
+    </style>
+    <script type="text/javascript">
+        var demoApp = angular.module('demoApp', ['ngRoute']);
+
+        demoApp.config(function ($routeProvider) {
+            $routeProvider.
+              when('/', {
+                  templateUrl: "views/demo001View.html",
+                  controller: 'myController'
+              }).
+              when('/demo001', {
+                  templateUrl: "views/demo001View.html",
+                  controller: 'myController'
+              }).
+              when('/demo002', {
+                  templateUrl: "views/demo002View.html",
+                  controller: 'myController2'
+              }).
+              otherwise({
+                  redirectTo: '/'
+              });
+        });
+
+        demoApp.controller("myController", ["$scope", function ($scope) {
+            $scope.yourName = null;
+        }]);
+
+        demoApp.controller("myController2", ["$scope", function ($scope) {
+            console.log("data is retrieving...");
+            $scope.isReady = true;
+            $scope.cars = [
+                {
+                    modelName: "beatle",
+                    color: "black",
+                    imgUrl: "img/beetle.png",
+                    price: 17000
+                },
+                {
+                    modelName: "golf",
+                    color: "white",
+                    imgUrl: "img/golf.png",
+                    price: 12000
+                },
+                {
+                    modelName: "jetta",
+                    color: "white",
+                    imgUrl: "img/jetta.png",
+                    price: 13000
+                },
+                {
+                    modelName: "tiguan",
+                    color: "blue",
+                    imgUrl: "img/tiguan.png",
+                    price: 19000
+                },
+                {
+                    modelName: "touareg",
+                    color: "silver",
+                    imgUrl: "img/touareg.png",
+                    price: 23000
+                },
+            ];
+        }]);
+
+        demoApp.controller("myController3", ["$scope", function ($scope) {
+            $scope.tab1Checked = true;
+            $scope.tab2Checked = false;
+            $scope.tab1Clicked = function () {
+                $scope.tab1Checked = !$scope.tab1Checked;
+                $scope.tab2Checked = !$scope.tab2Checked;
+            }
+            $scope.tab2Clicked = function () {
+                $scope.tab1Checked = !$scope.tab1Checked;
+                $scope.tab2Checked = !$scope.tab2Checked;
+            }
+        }]);
+    </script>
+</head>
+<body>
+    <h1 class="page-header">#Demo 004 - 1</h1>
+    <div class="container" ng-controller="myController3">
+        <ul class="nav nav-tabs" role="tablist">
+            <li ng-class="{'active': tab1Checked}" class="active" ng-click="tab1Clicked()"><a href="#/demo001">Demo001</a></li>
+            <li ng-class="{'active': tab2Checked}" ng-click="tab2Clicked()"><a href="#/demo002">Demo002</a></li>
+        </ul>
+        <div data-ng-view=""></div>
+    </div>
+</body>
+</html>
+
